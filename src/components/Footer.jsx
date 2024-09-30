@@ -8,7 +8,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Logo and About */}
           <div className="mb-4">
-            <h3 className="text-xl font-semibold text-white mb-2">BrandName</h3>
+          <span className="text-white ml-2 text-2xl font-semibold">Fin</span>
+          <span className="text-green-400 text-2xl font-semibold">Gyaan</span>
             <p>
               Empowering individuals with financial literacy to make smarter financial decisions.
             </p>
@@ -18,12 +19,12 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold text-white mb-2">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#home" className="hover:text-white">Home</a></li>
-              <li><a href="#courses" className="hover:text-white">Courses</a></li>
-              <li><a href="#portfolio" className="hover:text-white">Portfolio</a></li>
+              <li><a href="/" className="hover:text-white">Home</a></li>
+              <li><a href="/courses" className="hover:text-white">Courses</a></li>
+              <li><a href="/portfolio" className="hover:text-white">Portfolio</a></li>
               <li><a href="newspage" className="hover:text-white">News</a></li>
-              <li><a href="#events" className="hover:text-white">Events</a></li>
-              <li><a href="#contact" className="hover:text-white">Contact Us</a></li>
+              <li><a href="/events" className="hover:text-white">Events</a></li>
+              <li><a href="/contact" className="hover:text-white">Contact Us</a></li>
             </ul>
           </div>
 
@@ -60,7 +61,7 @@ const Footer = () => {
 
         {/* Footer Bottom Section */}
         <div className="mt-8 border-t border-gray-700 pt-4 text-center">
-          <p className="text-sm">&copy; {new Date().getFullYear()} BrandName. All rights reserved.</p>
+          <p className="text-sm">&copy; {new Date().getFullYear()} FinGyaan. All rights reserved.</p>
         </div>
       </div>
     </footer>

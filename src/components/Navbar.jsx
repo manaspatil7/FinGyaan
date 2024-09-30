@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase/firebase'; // Import your firebase setup
@@ -6,10 +5,43 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { FaUserCircle } from 'react-icons/fa'; // Default profile icon for non-Google sign-ins
 import logo from '../assets/logo.jpg';
 
-const Navbar = () => {
+const translations = {
+  English: {
+    home: "Home",
+    courses: "Courses",
+    portfolio: "Portfolio",
+    tools: "Tools",
+    news: "News",
+    events: "Events",
+    contact: "Contact Us",
+    login: "Login / Sign In",
+    profile: "Profile",
+  },
+  Hindi: {
+    home: "घर",
+    courses: "कोर्स",
+    portfolio: "पोर्टफोलियो",
+    tools: "उपकरण",
+    news: "समाचार",
+    events: "कार्यक्रम",
+    contact: "संपर्क करें",
+    login: "लॉगिन / साइन इन",
+    profile: "प्रोफ़ाइल",
+  }
+};
+
+const Navbar = ({ onLanguageChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null); // State to store user info
+  const [selectedLanguage, setSelectedLanguage] = useState('English'); // Language state
   const navigate = useNavigate(); // For navigation
+
+
+    const handleLanguageChange = (event) => {
+        const newLanguage = event.target.value;
+        setSelectedLanguage(newLanguage);
+        onLanguageChange(newLanguage === 'English' ? 'en' : 'hi'); // Passing language code
+    };
 
   // Toggle mobile menu
   const toggleMenu = () => {
@@ -36,11 +68,16 @@ const Navbar = () => {
     setIsOpen(false); // Close the menu
   };
 
+  
+
   // Check if the user signed in through Google
   const isGoogleSignIn = user?.providerData.some((provider) => provider.providerId === 'google.com');
 
   // Determine the profile photo to display
   const profilePhoto = isGoogleSignIn ? user.photoURL : user?.photoURL || '/default-profile.png';
+
+  // Get translations based on selected language
+  const t = translations[selectedLanguage];
 
   return (
     <nav className="bg-gray-800">
@@ -48,35 +85,45 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
           <Link to="/">
-          <div className="flex-shrink-0 flex items-center">
-            <span className="text-white ml-2 text-2xl font-semibold">Fin</span>
-            <span className="text-green-400 text-2xl font-semibold">Gyaan</span>
-          </div>
+            <div className="flex-shrink-0 flex items-center">
+              <span className="text-white ml-2 text-2xl font-semibold">Fin</span>
+              <span className="text-green-400 text-2xl font-semibold">Gyaan</span>
+            </div>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex md:items-center space-x-4">
             <Link to="/" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-semibold">
-              Home
+              {t.home}
             </Link>
             <Link to="/courses" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-semibold">
-              Courses
+              {t.courses}
             </Link>
             <Link to="/portfolio" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-semibold">
-              Portfolio
+              {t.portfolio}
             </Link>
             <Link to="/tools" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-semibold">
-              Tools
+              {t.tools}
             </Link>
             <Link to="/newspage" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-semibold">
-              News
+              {t.news}
             </Link>
             <Link to="/events" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-semibold">
-              Events
+              {t.events}
             </Link>
             <Link to="/contact" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-semibold">
-              Contact Us
+              {t.contact}
             </Link>
+
+            {/* Language Dropdown */}
+            <select
+                value={selectedLanguage}
+                onChange={handleLanguageChange}
+                className="text-gray-300 bg-gray-800 border border-gray-600 rounded-md px-2 py-1"
+            >
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+            </select>
           </div>
 
           {/* Profile Icon or Login Button for Desktop */}
@@ -88,14 +135,13 @@ const Navbar = () => {
                   alt="Profile"
                   className="w-10 h-10 rounded-full cursor-pointer"
                 />
-                {/* <span className="text-gray-300 ml-2 hover:text-white">Profile</span> */}
               </Link>
             ) : (
               <Link
                 to="/login"
                 className="text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-semibold"
               >
-                Login / Sign In
+                {t.login}
               </Link>
             )}
           </div>
@@ -130,38 +176,47 @@ const Navbar = () => {
         <div className="md:hidden bg-gray-700">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link to="/" onClick={handleLinkClick} className="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-semibold">
-              Home
+              {t.home}
             </Link>
             <Link to="/courses" onClick={handleLinkClick} className="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-semibold">
-              Courses
+              {t.courses}
             </Link>
             <Link to="/portfolio" onClick={handleLinkClick} className="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-semibold">
-              Portfolio
+              {t.portfolio}
             </Link>
             <Link to="/tools" onClick={handleLinkClick} className="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-semibold">
-              Tools
+              {t.tools}
             </Link>
             <Link to="/newspage" onClick={handleLinkClick} className="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-semibold">
-              News
+              {t.news}
             </Link>
             <Link to="/events" onClick={handleLinkClick} className="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-semibold">
-              Events
+              {t.events}
             </Link>
             <Link to="/contact" onClick={handleLinkClick} className="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-semibold">
-              Contact Us
+              {t.contact}
             </Link>
+
+            {/* Mobile Language Dropdown */}
+            <select
+              value={selectedLanguage}
+              onChange={handleLanguageChange}
+              className="block w-full text-gray-300 bg-gray-800 border border-gray-600 rounded-md px-2 py-1 mt-2"
+            >
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+            </select>
           </div>
 
           {/* Mobile Profile Icon */}
           {user && (
             <Link to="/profile" className="flex items-center space-x-2" onClick={handleLinkClick}>
-            <img
-              src={profilePhoto}
-              alt="Profile"
-              className="w-10 h-10 rounded-full cursor-pointer mb-2"
-            />
-            <span className="text-gray-300 ml-2 hover:text-white mb-2">Profile</span>
-          </Link>
+              <img
+                src={profilePhoto}
+                alt="Profile"
+                className="w-10 h-10 rounded-full cursor-pointer mx-2"
+              />
+            </Link>
           )}
         </div>
       )}
@@ -170,7 +225,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
 
 
 

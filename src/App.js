@@ -1,5 +1,5 @@
 // App.js
-import React from 'react';
+import { React, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './index.css'; // Import your Tailwind CSS file
 import Home from './pages/Home';
@@ -23,12 +23,19 @@ import ViewCourse from './pages/ViewCourse';
 import Portfolio from './pages/Portfolio';
 
 function App() {
+
+  const [language, setLanguage] = useState('en'); // Default to English
+
+  const handleLanguageChange = (newLanguage) => {
+      setLanguage(newLanguage);
+  };
+
   return (
     <Router>
-      <Navbar/>
+      <Navbar onLanguageChange={handleLanguageChange}/>
       <Routes>
         {/* Route for Home page */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home language={language} />} />
         <Route path="/newspage" element={<NewsPage />} />
         <Route path="/events" element={<Events />} />
         <Route path="/login" element={<LoginSignup />} />
