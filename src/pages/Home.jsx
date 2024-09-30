@@ -7,18 +7,14 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { AttachMoney, TrendingUp, Savings } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
-import InvestmentGif from '../assets/Investment.gif';
-import Spline from '@splinetool/react-spline';
-import splinedesign from '../assets/scene.splinecode'
-
-
+import InvestmentGif from '../assets/landinggif.gif';
 
 const useStyles = makeStyles(() => ({
     root: {
         flexGrow: 1,
-        position: 'relative', // Added for positioning the background
     },
     hero: {
+        backgroundImage: 'linear-gradient(to right, #3f51b5, #2196f3)',
         height: '90vh',
         display: 'flex',
         justifyContent: 'center',
@@ -26,16 +22,10 @@ const useStyles = makeStyles(() => ({
         color: '#fff',
         textAlign: 'center',
         padding: '0 20px',
-        position: 'relative', // Positioning context for absolute children
-        overflow: 'hidden', // Prevent overflow
-    },
-    splineBackground: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: -1, // Behind other content
+        '@media (max-width: 600px)': {
+            height: 'auto',
+            padding: '40px 20px',
+        },
     },
     features: {
         padding: '50px 20px',
@@ -132,10 +122,6 @@ const Home = () => {
         <div className={classes.root}>
             {/* Hero Section */}
             <Box className={classes.hero}>
-                <Spline
-                    scene={splinedesign}
-                    className={classes.splineBackground} // Add spline as background
-                />
                 <Container>
                     <Grid container spacing={4} alignItems="center">
                         {/* Left side: Motion text content */}
@@ -156,13 +142,13 @@ const Home = () => {
                                     saving, investing, and retirement planning, so you can make informed decisions
                                     for a secure financial future.
                                 </Typography>
-                                <Button variant="contained" color="secondary" size="large" sx={{ mt: 4 }}>
+                                <Button variant="contained" color="success" size="large" sx={{ mt: 4 }}>
                                     Get Started
                                 </Button>
                             </motion.div>
                         </Grid>
 
-                        {/* Right side: Finance-themed image and icons */}
+                        {/* Right side: Finance-themed GIF and icons */}
                         <Grid item xs={12} md={6}>
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8 }}
@@ -263,6 +249,8 @@ const Home = () => {
 };
 
 export default Home;
+
+
 
 
 

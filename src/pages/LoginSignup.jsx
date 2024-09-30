@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSpring, animated } from 'react-spring';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const LoginSignUp = () => {
   const [isSignUp, setIsSignUp] = useState(true);
@@ -13,6 +14,7 @@ const LoginSignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const db = getFirestore(); // Initialize Firestore
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleAuth = async (e) => {
     e.preventDefault();
@@ -26,6 +28,10 @@ const LoginSignUp = () => {
         userCredential = await signInWithEmailAndPassword(auth, email, password);
         toast.success('Login successful!');
       }
+
+      // Redirect to Gq.jsx page after successful auth
+      navigate('/gq'); // Change this to the correct path for Gq.jsx
+
       // Clear fields after successful auth
       setName(''); // Clear name field
       setEmail('');
@@ -41,6 +47,9 @@ const LoginSignUp = () => {
       const userCredential = await signInWithPopup(auth, provider);
       await saveUserData(userCredential.user.uid, userCredential.user.displayName, userCredential.user.email); // Save user data
       toast.success('Google sign-in successful!');
+
+      // Redirect to Gq.jsx page after successful Google sign-in
+      navigate('/gq'); // Change this to the correct path for Gq.jsx
     } catch (error) {
       toast.error(error.message);
     }
@@ -134,6 +143,12 @@ const LoginSignUp = () => {
 };
 
 export default LoginSignUp;
+
+
+
+
+
+
 
 
 
