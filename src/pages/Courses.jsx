@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useState } from 'react';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +15,13 @@ const coursesData = [
     reviews: 120,
     category: 'Investment & Portfolio Management',
     thumbnail: 'https://c8.alamy.com/comp/2H26CBF/investment-portfolio-management-symbol-concept-words-investment-portfolio-management-businessman-hand-beautiful-white-background-business-inves-2H26CBF.jpg',
-    videoLink: 'https://www.youtube.com/watch?v=rA4uKIy5gO0',
+    videoLink: 'https://www.youtube.com/watch?v=JaufAHlbVdE',
+    quizLink: 'https://view.genially.com/66fac35208d380fedabaed58',
+    summary: [
+      "Learn the fundamentals of portfolio management and risk assessment.",
+      "Understand the impact of diversification in investments.",
+      "Master the techniques for tracking and adjusting your portfolio."
+    ]
   },
   {
     id: 2,
@@ -21,7 +31,13 @@ const coursesData = [
     reviews: 210,
     category: 'Personal Finance',
     thumbnail: 'https://i.ytimg.com/vi/_WGFFuEIAs0/maxresdefault.jpg',
-    videoLink: 'https://www.youtube.com/watch?v=rA4uKIy5gO0',
+    videoLink: 'https://www.youtube.com/watch?v=6sq2o1atWLY',
+    quizLink: 'https://view.genially.com/66fab32b874ffba72e66f567',
+    summary: [
+      "Gain insight into budgeting and financial goal setting.",
+      "Learn how to manage debt and build credit effectively.",
+      "Discover smart savings strategies for future financial stability."
+    ]
   },
   {
     id: 3,
@@ -31,7 +47,13 @@ const coursesData = [
     reviews: 98,
     category: 'Corporate Finance',
     thumbnail: 'https://i.ytimg.com/vi/Vl_1HwrClGA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLARAVwv60UkHRvsp4b9iZorxWpr_w',
-    videoLink: 'https://www.youtube.com/watch?v=ZbdLDPBScUc',
+    videoLink: 'https://www.youtube.com/watch?v=5eGRi66iUfU',
+    quizLink: 'https://view.genially.com/66fae668e5ecc373ac203132',
+    summary: [
+      "Understand the key principles of corporate finance.",
+      "Analyze financial statements to assess company performance.",
+      "Learn how to make effective investment and financing decisions."
+    ]
   },
   {
     id: 4,
@@ -42,6 +64,12 @@ const coursesData = [
     category: 'Financial Markets & Instruments',
     thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR7SKTTCyKf11JOurq-CFdnhcYgqpaSpJqNw&s',
     videoLink: 'https://www.youtube.com/watch?v=OLH0HpGn7i8',
+    quizLink: 'https://view.genially.com/66fab32b874ffba72e66f567',
+    summary: [
+      "Explore the structure of financial markets.",
+      "Learn about various financial instruments and their uses.",
+      "Understand market trends and their implications on investments."
+    ]
   },
   {
     id: 5,
@@ -52,6 +80,12 @@ const coursesData = [
     category: 'Wealth Management',
     thumbnail: 'https://www.shutterstock.com/shutterstock/videos/3571604959/thumb/7.jpg?ip=x480',
     videoLink: 'https://www.youtube.com/watch?v=l24V5aK0Dcc',
+    quizLink: 'https://view.genially.com/66fab32b874ffba72e66f567',
+    summary: [
+      "Understand the key components of wealth management.",
+      "Learn about estate planning and risk management strategies.",
+      "Develop a roadmap for building and protecting your wealth."
+    ]
   },
   {
     id: 6,
@@ -62,6 +96,12 @@ const coursesData = [
     category: 'Taxation',
     thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/4-210428103939-thumbnail.jpg?width=640&height=640&fit=bounds',
     videoLink: 'https://www.youtube.com/watch?v=l24V5aK0Dcc',
+    quizLink: 'https://view.genially.com/66fac35208d380fedabaed58',
+    summary: [
+      "Understand the basic principles of taxation.",
+      "Learn about different tax structures and their impacts.",
+      "Discover strategies for effective tax planning."
+    ]
   },
   {
     id: 7,
@@ -72,6 +112,12 @@ const coursesData = [
     category: 'Financial Risk Management',
     thumbnail: 'https://i.ytimg.com/vi/oRq-ry_n-wQ/maxresdefault.jpg',
     videoLink: 'https://www.youtube.com/watch?v=DGj6kYxlg_c',
+    quizLink: 'https://view.genially.com/66fae668e5ecc373ac203132',
+    summary: [
+      "Learn how to identify and mitigate financial risks.",
+      "Explore different risk management tools and techniques.",
+      "Develop strategies to protect financial assets."
+    ]
   },
   {
     id: 8,
@@ -82,6 +128,12 @@ const coursesData = [
     category: 'Banking & Financial Institutions',
     thumbnail: 'https://embed-ssl.wistia.com/deliveries/c07a2d4fa0e61ed51f377f13def6d02a.webp?image_crop_resized=1280x720',
     videoLink: 'https://www.youtube.com/watch?v=DGj6kYxlg_c',
+    quizLink: 'https://view.genially.com/66fac35208d380fedabaed58',
+    summary: [
+      "Gain a comprehensive understanding of the banking industry.",
+      "Explore the role of financial institutions in the economy.",
+      "Learn about regulatory frameworks governing the banking sector."
+    ]
   },
   {
     id: 9,
@@ -92,6 +144,12 @@ const coursesData = [
     category: 'Entrepreneurship & Small Business Finance',
     thumbnail: 'https://i0.wp.com/thetimesvalue.com/wp-content/uploads/2023/10/Entrepreneurship-and-Small-Business-Finance.jpg',
     videoLink: 'https://www.youtube.com/watch?v=rA4uKIy5gO0',
+    quizLink: 'https://view.genially.com/66fab32b874ffba72e66f567',
+    summary: [
+      "Understand the financial needs of small businesses.",
+      "Learn about different funding options available for entrepreneurs.",
+      "Explore strategies to manage cash flow and financial planning."
+    ]
   },
   {
     id: 10,
@@ -102,6 +160,12 @@ const coursesData = [
     category: 'Retirement Planning',
     thumbnail: 'https://i.ytimg.com/vi/7aZuznhQmGM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBrCY_mwRP-hC6KiC1htT2quRraOw',
     videoLink: 'https://www.youtube.com/watch?v=DGj6kYxlg_c',
+    quizLink: 'https://view.genially.com/66fae668e5ecc373ac203132',
+    summary: [
+      "Learn the fundamentals of retirement planning.",
+      "Discover different retirement accounts and saving strategies.",
+      "Plan for long-term financial security and investment."
+    ]
   },
   {
     id: 11,
@@ -112,6 +176,12 @@ const coursesData = [
     category: 'Real Estate Finance',
     thumbnail: 'https://img.freepik.com/free-vector/flat-design-geometric-real-estate-youtube-thumbnail_23-2149208712.jpg',
     videoLink: 'https://www.youtube.com/watch?v=UPA6U9aFrTk',
+    quizLink: 'https://view.genially.com/66fab32b874ffba72e66f567',
+    summary: [
+      "Explore the basics of real estate finance and investment.",
+      "Learn about property valuation and mortgage financing.",
+      "Understand the legal and financial aspects of real estate transactions."
+    ]
   },
   {
     id: 12,
@@ -120,10 +190,33 @@ const coursesData = [
     rating: 4.8,
     reviews: 190,
     category: 'Fintech & Innovation',
-    thumbnail: 'https://i.ytimg.com/vi/Z3bWeICaUyw/maxresdefault.jpg',
-    videoLink: 'https://www.youtube.com/watch?v=OLH0HpGn7i8',
+    thumbnail: 'https://i.ytimg.com/vi/pLsv2nx9ZNE/hqdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=dv2yx2LJWx0',
+    quizLink: 'https://view.genially.com/66fab32b874ffba72e66f567',
+    summary: [
+      "Discover how financial technology is reshaping the industry.",
+      "Learn about blockchain, digital payments, and other innovations.",
+      "Explore the future trends and challenges in fintech."
+    ]
+  },
+  {
+    id: 13,
+    title: 'Behavioral Finance',
+    author: 'Daniel Kim',
+    rating: 4.3,
+    reviews: 110,
+    category: 'Behavioral Finance',
+    thumbnail: 'https://imageio.forbes.com/specials-images/dam/imageserve/618fb57f7dd1bc4e2d26578f/0x0.jpg?format=jpg&width=1200',
+    videoLink: 'https://www.youtube.com/watch?v=9FVjaP5wzrw',
+    quizLink: 'https://view.genially.com/66fab32b874ffba72e66f567',
+    summary: [
+      "Understand the psychological factors influencing financial decisions.",
+      "Learn how cognitive biases affect investment behavior.",
+      "Discover strategies to avoid common financial decision-making pitfalls."
+    ]
   },
 ];
+
 
 const categories = [
   'All',
@@ -168,14 +261,18 @@ const Courses = () => {
   };
 
   const handleViewCourse = (course) => {
-    navigate('/view-course', { state: { 
-      title: course.title, 
-      author: course.author, 
-      rating: course.rating, 
-      reviews: course.reviews, 
-      category: course.category, 
-      videoLink: course.videoLink 
-    }});
+    navigate('/view-course', {
+      state: {
+        title: course.title,
+        author: course.author,
+        rating: course.rating,
+        reviews: course.reviews,
+        category: course.category,
+        videoLink: course.videoLink,
+        quizLink: course.quizLink,  // Pass the quiz link
+        summary: course.summary,
+      },
+    });
   };
 
   return (
@@ -257,3 +354,4 @@ const Courses = () => {
 };
 
 export default Courses;
+

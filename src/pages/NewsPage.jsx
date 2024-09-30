@@ -8,7 +8,7 @@ const NewsPage = () => {
   const [category, setCategory] = useState('All');
 
   // API Key from NewsAPI
-  const apiKey = '53d40814468c4507b8439535a19ba313'; // Your provided API key
+  const apiKey = '2e316348b1e84def88717f1c62869e69'; // Your provided API key
 
   useEffect(() => {
     fetchNews(category);

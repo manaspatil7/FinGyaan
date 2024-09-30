@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react'; // Ensure all imports are here
 import { Typography, Container, Grid, Button, Box, useMediaQuery, Card, CardContent, CardMedia } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { motion } from 'framer-motion';
@@ -8,9 +8,9 @@ import 'slick-carousel/slick/slick-theme.css';
 import { AttachMoney, TrendingUp, Savings } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import InvestmentGif from '../assets/heroimg3.png';
-import caseStudyImg1 from '../assets/heroimg3.png'; // Add relevant images
-import caseStudyImg2 from '../assets/heroimg3.png';
-import caseStudyImg3 from '../assets/heroimg3.png';
+import c1 from '../assets/c1.webp'; // Replace with actual images
+import caseStudyImg2 from '../assets/2.webp'; // Replace with actual images
+import caseStudyImg3 from '../assets/heroimg3.png'; // Replace with actual images
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -117,6 +117,20 @@ const Home = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+    // Use effect to scroll to the top on page load
+    useEffect(() => {
+        const handleScrollToTop = () => {
+            window.scrollTo(0, 0);
+        };
+
+        window.addEventListener('beforeunload', handleScrollToTop); // Scroll to top on refresh
+
+        // Cleanup event listener
+        return () => {
+            window.removeEventListener('beforeunload', handleScrollToTop);
+        };
+    }, []);
+
     const featureData = [
         {
             title: 'Budgeting',
@@ -139,27 +153,18 @@ const Home = () => {
     const carouselData = [
         {
             title: 'Case Study 1',
-            description: 'How John paid off debt and started investing.',
-            image: caseStudyImg1,
-            name: 'John Doe',
-            age: '32',
-            location: 'New York, USA',
+            description: 'Explore Sarah’s path to Financial Independence.',
+            image: {c1},
         },
         {
             title: 'Case Study 2',
-            description: 'Maria’s journey to saving for her first home.',
+            description: 'Discover Maria’s path to saving for her first home.',
             image: caseStudyImg2,
-            name: 'Maria Johnson',
-            age: '28',
-            location: 'San Francisco, USA',
         },
         {
             title: 'Case Study 3',
-            description: 'Building a family budget that works.',
+            description: 'Learn how the Smith family built a sustainable budget.',
             image: caseStudyImg3,
-            name: 'Smith Family',
-            age: 'N/A',
-            location: 'Austin, USA',
         },
     ];
 
@@ -248,15 +253,13 @@ const Home = () => {
                         {featureData.map((feature, index) => (
                             <Grid item xs={12} sm={6} md={3} key={index}>
                                 <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.5 }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
                                 >
                                     <Box className={classes.featureBox}>
                                         <Typography variant="h6">{feature.title}</Typography>
-                                        <Typography variant="body2" sx={{ mt: 2 }}>
-                                            {feature.description}
-                                        </Typography>
+                                        <Typography variant="body2">{feature.description}</Typography>
                                     </Box>
                                 </motion.div>
                             </Grid>
@@ -265,49 +268,47 @@ const Home = () => {
                 </Container>
             </Box>
 
-            {/* Case Studies Carousel */}
+            {/* Carousel Section */}
             <Box className={classes.carousel}>
-                <Typography variant={isMobile ? 'h5' : 'h4'} align="center" sx={{ mb: 4 }}>
-                    Financial Literacy Success Stories
-                </Typography>
-                <Slider {...carouselSettings}>
-                    {carouselData.map((caseStudy, index) => (
-                        <Card className={classes.card} key={index}>
-                            <CardMedia
-                                component="img"
-                                image={caseStudy.image}
-                                alt={caseStudy.title}
-                                className={classes.cardImage}
-                            />
-                            <CardContent className={classes.cardContent}>
-                                <Typography variant="h6">{caseStudy.title}</Typography>
-                                <Typography variant="body2" sx={{ mt: 1 }}>
-                                    {caseStudy.description}
-                                </Typography>
-                                <Typography className={classes.cardDetails}>
-                                    <strong>Name:</strong> {caseStudy.name}
-                                </Typography>
-                                <Typography className={classes.cardDetails}>
-                                    <strong>Age:</strong> {caseStudy.age}
-                                </Typography>
-                                <Typography className={classes.cardDetails}>
-                                    <strong>Location:</strong> {caseStudy.location}
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </Slider>
+                <Container maxWidth="lg">
+                    <Typography variant={isMobile ? 'h5' : 'h4'} align="center" sx={{ mb: 4 }}>
+                        Success Stories
+                    </Typography>
+                    <Slider {...carouselSettings}>
+                        {carouselData.map((item, index) => (
+                            <div key={index}>
+                                <Card className={classes.card}>
+                                    <CardMedia
+                                        component="img"
+                                        alt={item.title}
+                                        image={item.image}
+                                        className={classes.cardImage}
+                                    />
+                                    <CardContent className={classes.cardContent}>
+                                        <Typography variant="h6">{item.title}</Typography>
+                                        <Typography className={classes.cardDetails}>
+                                            {item.description}
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        ))}
+                    </Slider>
+                </Container>
             </Box>
 
-            {/* Footer */}
+            {/* Footer Section */}
             <Box className={classes.footer}>
-                <Typography variant="body2">© 2024 Financial Literacy Hub. All rights reserved.</Typography>
+                <Typography variant="body1">© 2024 Your Company Name</Typography>
             </Box>
         </div>
     );
 };
 
-export default Home;
+export default Home; // Ensure export is at the bottom
+
+
+
 
 
 
@@ -326,7 +327,7 @@ export default Home;
 
 
 // import React from 'react';
-// import { Typography, Container, Grid, Button, Box, useMediaQuery } from '@mui/material';
+// import { Typography, Container, Grid, Button, Box, useMediaQuery, Card, CardContent, CardMedia } from '@mui/material';
 // import { makeStyles } from '@mui/styles';
 // import { motion } from 'framer-motion';
 // import Slider from 'react-slick';
@@ -335,6 +336,9 @@ export default Home;
 // import { AttachMoney, TrendingUp, Savings } from '@mui/icons-material';
 // import { useTheme } from '@mui/material/styles';
 // import InvestmentGif from '../assets/heroimg3.png';
+// import caseStudyImg1 from '../assets/heroimg3.png'; // Add relevant images
+// import caseStudyImg2 from '../assets/heroimg3.png';
+// import caseStudyImg3 from '../assets/heroimg3.png';
 
 // const useStyles = makeStyles(() => ({
 //     root: {
@@ -378,10 +382,33 @@ export default Home;
 //     carousel: {
 //         padding: '50px 20px',
 //         textAlign: 'center',
-//         overflowX: 'hidden', // Prevent horizontal scroll
+//         overflowX: 'hidden',
+//         backgroundColor: '#f9fafb',
 //         '@media (max-width: 600px)': {
 //             padding: '30px 10px',
 //         },
+//     },
+//     card: {
+//         maxWidth: 400,
+//         margin: '0 auto',
+//         borderRadius: '15px',
+//         boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+//         '@media (max-width: 600px)': {
+//             maxWidth: '100%',
+//         },
+//     },
+//     cardImage: {
+//         height: 200,
+//         borderRadius: '15px 15px 0 0',
+//     },
+//     cardContent: {
+//         padding: '20px',
+//         textAlign: 'left',
+//     },
+//     cardDetails: {
+//         marginTop: '10px',
+//         fontSize: '14px',
+//         color: '#757575',
 //     },
 //     footer: {
 //         backgroundColor: '#3f51b5',
@@ -437,12 +464,41 @@ export default Home;
 //         },
 //     ];
 
+//     const carouselData = [
+//         {
+//             title: 'Case Study 1',
+//             description: 'How John paid off debt and started investing.',
+//             image: caseStudyImg1,
+//             name: 'John Doe',
+//             age: '32',
+//             location: 'New York, USA',
+//         },
+//         {
+//             title: 'Case Study 2',
+//             description: 'Maria’s journey to saving for her first home.',
+//             image: caseStudyImg2,
+//             name: 'Maria Johnson',
+//             age: '28',
+//             location: 'San Francisco, USA',
+//         },
+//         {
+//             title: 'Case Study 3',
+//             description: 'Building a family budget that works.',
+//             image: caseStudyImg3,
+//             name: 'Smith Family',
+//             age: 'N/A',
+//             location: 'Austin, USA',
+//         },
+//     ];
+
 //     const carouselSettings = {
 //         dots: true,
 //         infinite: true,
 //         speed: 500,
 //         slidesToShow: 1,
 //         slidesToScroll: 1,
+//         autoplay: true,
+//         autoplaySpeed: 3000,
 //     };
 
 //     return (
@@ -451,7 +507,6 @@ export default Home;
 //             <Box className={classes.hero}>
 //                 <Container>
 //                     <Grid container spacing={4} alignItems="center">
-//                         {/* Left side: Motion text content */}
 //                         <Grid item xs={12} md={6}>
 //                             <motion.div
 //                                 initial={{ opacity: 0, y: -50 }}
@@ -474,8 +529,6 @@ export default Home;
 //                                 </Button>
 //                             </motion.div>
 //                         </Grid>
-
-//                         {/* Right side: Finance-themed GIF and icons */}
 //                         <Grid item xs={12} md={6}>
 //                             <motion.div
 //                                 initial={{ opacity: 0, scale: 0.8 }}
@@ -540,42 +593,50 @@ export default Home;
 //                 </Container>
 //             </Box>
 
-//             {/* Carousel Section */}
+//             {/* Case Studies Carousel */}
 //             <Box className={classes.carousel}>
-//                 <Typography variant={isMobile ? 'h5' : 'h4'} sx={{ mb: 4 }}>
-//                     Real-World Examples
+//                 <Typography variant={isMobile ? 'h5' : 'h4'} align="center" sx={{ mb: 4 }}>
+//                     Financial Literacy Success Stories
 //                 </Typography>
 //                 <Slider {...carouselSettings}>
-//                     <div>
-//                         <Typography variant="h6">Case Study 1</Typography>
-//                         <Typography variant="body2">
-//                             Learn how John managed to pay off debt and start investing.
-//                         </Typography>
-//                     </div>
-//                     <div>
-//                         <Typography variant="h6">Case Study 2</Typography>
-//                         <Typography variant="body2">
-//                             Discover how Maria saved for her first home.
-//                         </Typography>
-//                     </div>
-//                     <div>
-//                         <Typography variant="h6">Case Study 3</Typography>
-//                         <Typography variant="body2">
-//                             Learn how to build a budget that works for your family.
-//                         </Typography>
-//                     </div>
+//                     {carouselData.map((caseStudy, index) => (
+//                         <Card className={classes.card} key={index}>
+//                             <CardMedia
+//                                 component="img"
+//                                 image={caseStudy.image}
+//                                 alt={caseStudy.title}
+//                                 className={classes.cardImage}
+//                             />
+//                             <CardContent className={classes.cardContent}>
+//                                 <Typography variant="h6">{caseStudy.title}</Typography>
+//                                 <Typography variant="body2" sx={{ mt: 1 }}>
+//                                     {caseStudy.description}
+//                                 </Typography>
+//                                 <Typography className={classes.cardDetails}>
+//                                     <strong>Name:</strong> {caseStudy.name}
+//                                 </Typography>
+//                                 <Typography className={classes.cardDetails}>
+//                                     <strong>Age:</strong> {caseStudy.age}
+//                                 </Typography>
+//                                 <Typography className={classes.cardDetails}>
+//                                     <strong>Location:</strong> {caseStudy.location}
+//                                 </Typography>
+//                             </CardContent>
+//                         </Card>
+//                     ))}
 //                 </Slider>
 //             </Box>
 
 //             {/* Footer */}
 //             <Box className={classes.footer}>
-//                 <Typography variant="body2">© 2024 Financial Literacy Platform. All rights reserved.</Typography>
+//                 <Typography variant="body2">© 2024 Financial Literacy Hub. All rights reserved.</Typography>
 //             </Box>
 //         </div>
 //     );
 // };
 
 // export default Home;
+
 
 
 
