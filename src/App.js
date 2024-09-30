@@ -19,6 +19,8 @@ import TaxCalculator from './TaxCalculator';
 import ContactUsForm from './pages/ContactUsForm'
 import Courses from './pages/Courses';
 import Gq from './pages/Gq';
+import ViewCourse from './pages/ViewCourse';
+import Portfolio from './pages/Portfolio';
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
         <Route path="/contact" element={<ContactUsForm />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/gq" element={<Gq />} />
+        <Route path="/view-course" element={<ViewCourse />} />
+        <Route path="/portfolio" element={<Portfolio />} />
       </Routes>
       <Footer/>
     </Router>

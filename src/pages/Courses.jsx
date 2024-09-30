@@ -11,7 +11,7 @@ const coursesData = [
     reviews: 120,
     category: 'Investment & Portfolio Management',
     thumbnail: 'https://c8.alamy.com/comp/2H26CBF/investment-portfolio-management-symbol-concept-words-investment-portfolio-management-businessman-hand-beautiful-white-background-business-inves-2H26CBF.jpg',
-    videoLink: 'https://www.youtube.com/playlist?list=PLsh2FvSr3n7dyc9mWitsK3S6yIiTJBKPl',
+    videoLink: 'https://www.youtube.com/watch?v=rA4uKIy5gO0',
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const coursesData = [
     reviews: 210,
     category: 'Personal Finance',
     thumbnail: 'https://i.ytimg.com/vi/_WGFFuEIAs0/maxresdefault.jpg',
-    videoLink: 'https://www.youtube.com/playlist?list=PLLbfvOX935JGo7PWixihas8kneskv1uU9',
+    videoLink: 'https://www.youtube.com/watch?v=rA4uKIy5gO0',
   },
   {
     id: 3,
@@ -30,8 +30,8 @@ const coursesData = [
     rating: 4.3,
     reviews: 98,
     category: 'Corporate Finance',
-    thumbnail: '',
-    videoLink: 'https://www.youtube.com/playlist?list=PLUkh9m2BorqnDenjSLZ2DHIXrdxoN4Bn_',
+    thumbnail: 'https://i.ytimg.com/vi/Vl_1HwrClGA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLARAVwv60UkHRvsp4b9iZorxWpr_w',
+    videoLink: 'https://www.youtube.com/watch?v=ZbdLDPBScUc',
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ const coursesData = [
     reviews: 150,
     category: 'Financial Markets & Instruments',
     thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR7SKTTCyKf11JOurq-CFdnhcYgqpaSpJqNw&s',
-    videoLink: 'https://www.youtube.com/playlist?list=PLWJDzVuPkXAk6id3rxECy2zdE-uTX7edv',
+    videoLink: 'https://www.youtube.com/watch?v=OLH0HpGn7i8',
   },
   {
     id: 5,
@@ -51,7 +51,7 @@ const coursesData = [
     reviews: 275,
     category: 'Wealth Management',
     thumbnail: 'https://www.shutterstock.com/shutterstock/videos/3571604959/thumb/7.jpg?ip=x480',
-    videoLink: 'https://www.youtube.com/watch?v=l24V5aK0Dcc&list=PLmFN7_8sAtp8fQRbdqP0LP8Cpenuux_4K',
+    videoLink: 'https://www.youtube.com/watch?v=l24V5aK0Dcc',
   },
   {
     id: 6,
@@ -61,7 +61,7 @@ const coursesData = [
     reviews: 180,
     category: 'Taxation',
     thumbnail: 'https://cdn.slidesharecdn.com/ss_thumbnails/4-210428103939-thumbnail.jpg?width=640&height=640&fit=bounds',
-    videoLink: 'https://www.youtube.com/playlist?list=PLgEr7v1ES73ao7Tn53MECKNIXiXoWVTvg',
+    videoLink: 'https://www.youtube.com/watch?v=l24V5aK0Dcc',
   },
   {
     id: 7,
@@ -71,7 +71,7 @@ const coursesData = [
     reviews: 130,
     category: 'Financial Risk Management',
     thumbnail: 'https://i.ytimg.com/vi/oRq-ry_n-wQ/maxresdefault.jpg',
-    videoLink: 'https://www.youtube.com/playlist?list=PLrL4pgVAnStlSVGgzpwpOFzKbHlFiXAcY',
+    videoLink: 'https://www.youtube.com/watch?v=DGj6kYxlg_c',
   },
   {
     id: 8,
@@ -81,7 +81,7 @@ const coursesData = [
     reviews: 320,
     category: 'Banking & Financial Institutions',
     thumbnail: 'https://embed-ssl.wistia.com/deliveries/c07a2d4fa0e61ed51f377f13def6d02a.webp?image_crop_resized=1280x720',
-    videoLink: 'https://www.youtube.com/playlist?list=PLuw12N5V9029lwYIgXe1zLikyZCgfe_pE',
+    videoLink: 'https://www.youtube.com/watch?v=DGj6kYxlg_c',
   },
   {
     id: 9,
@@ -91,7 +91,7 @@ const coursesData = [
     reviews: 145,
     category: 'Entrepreneurship & Small Business Finance',
     thumbnail: 'https://i0.wp.com/thetimesvalue.com/wp-content/uploads/2023/10/Entrepreneurship-and-Small-Business-Finance.jpg',
-    videoLink: 'https://www.youtube.com/watch?v=rA4uKIy5gO0&list=PLsh2FvSr3n7fQlIDbfKutmSL26TsWitGQ',
+    videoLink: 'https://www.youtube.com/watch?v=rA4uKIy5gO0',
   },
   {
     id: 10,
@@ -101,7 +101,7 @@ const coursesData = [
     reviews: 210,
     category: 'Retirement Planning',
     thumbnail: 'https://i.ytimg.com/vi/7aZuznhQmGM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBrCY_mwRP-hC6KiC1htT2quRraOw',
-    videoLink: 'https://www.youtube.com/watch?v=DGj6kYxlg_c&list=PLneO7_io-jjQoyd4d2Ffh3cOZMnoiUPo5',
+    videoLink: 'https://www.youtube.com/watch?v=DGj6kYxlg_c',
   },
   {
     id: 11,
@@ -110,8 +110,8 @@ const coursesData = [
     rating: 4.6,
     reviews: 175,
     category: 'Real Estate Finance',
-    thumbnail: 'https://i.ytimg.com/vi/UPA6U9aFrTk/hq720.jpg',
-    videoLink: 'https://www.youtube.com/watch?v=ZbdLDPBScUc&list=PLxNHpNhDaEFLMez5ON383i6csWshmxWtD',
+    thumbnail: 'https://img.freepik.com/free-vector/flat-design-geometric-real-estate-youtube-thumbnail_23-2149208712.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=UPA6U9aFrTk',
   },
   {
     id: 12,
@@ -120,11 +120,10 @@ const coursesData = [
     rating: 4.8,
     reviews: 190,
     category: 'Fintech & Innovation',
-    thumbnail: 'https://i.ytimg.com/vi/OLH0HpGn7i8/maxresdefault.jpg',
-    videoLink: 'https://www.youtube.com/watch?v=AeOWJZjPYN0&list=PLqMl6r3x6BUTG9VqVohMvS4aLc53uC_GC',
+    thumbnail: 'https://i.ytimg.com/vi/Z3bWeICaUyw/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=OLH0HpGn7i8',
   },
 ];
-
 
 const categories = [
   'All',
@@ -148,9 +147,10 @@ const Courses = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const navigate = useNavigate();
 
-  const filteredCourses = coursesData.filter((course) =>
-    (selectedCategory === 'All' || course.category === selectedCategory) &&
-    course.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredCourses = coursesData.filter(
+    (course) =>
+      (selectedCategory === 'All' || course.category === selectedCategory) &&
+      course.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const renderStars = (rating) => {
@@ -168,7 +168,14 @@ const Courses = () => {
   };
 
   const handleViewCourse = (course) => {
-    navigate('/view-course', { state: { course } });
+    navigate('/view-course', { state: { 
+      title: course.title, 
+      author: course.author, 
+      rating: course.rating, 
+      reviews: course.reviews, 
+      category: course.category, 
+      videoLink: course.videoLink 
+    }});
   };
 
   return (
@@ -203,17 +210,17 @@ const Courses = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredCourses.slice(0, 3).map((course) => (
           <div key={course.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
-            <img src={course.thumbnail} alt={course.title} className="w-full h-40 object-cover" />
+            <img src={course.thumbnail} alt={course.title} className="w-full h-48 object-cover" />
             <div className="p-4">
-              <h3 className="text-lg font-bold mb-2">{course.title}</h3>
-              <p className="text-gray-600 mb-2">by {course.author}</p>
-              <div className="flex items-center mb-2">
+              <h3 className="text-lg font-semibold mb-2">{course.title}</h3>
+              <p className="text-gray-500">By {course.author}</p>
+              <div className="flex items-center space-x-2 mt-2">
                 {renderStars(course.rating)}
-                <span className="ml-2 text-gray-600">{course.reviews} reviews</span>
+                <span className="text-gray-500 text-sm">({course.reviews} reviews)</span>
               </div>
               <button
                 onClick={() => handleViewCourse(course)}
-                className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+                className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
               >
                 View Course
               </button>
@@ -222,22 +229,22 @@ const Courses = () => {
         ))}
       </div>
 
-      {/* Other Courses */}
-      <h2 className="text-2xl font-bold mt-12 mb-4">Other Courses</h2>
+      {/* All Courses */}
+      <h2 className="text-2xl font-bold mt-8 mb-4">All Courses</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredCourses.slice(3).map((course) => (
+        {filteredCourses.map((course) => (
           <div key={course.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
-            <img src={course.thumbnail} alt={course.title} className="w-full h-40 object-cover" />
+            <img src={course.thumbnail} alt={course.title} className="w-full h-48 object-cover" />
             <div className="p-4">
-              <h3 className="text-lg font-bold mb-2">{course.title}</h3>
-              <p className="text-gray-600 mb-2">by {course.author}</p>
-              <div className="flex items-center mb-2">
+              <h3 className="text-lg font-semibold mb-2">{course.title}</h3>
+              <p className="text-gray-500">By {course.author}</p>
+              <div className="flex items-center space-x-2 mt-2">
                 {renderStars(course.rating)}
-                <span className="ml-2 text-gray-600">{course.reviews} reviews</span>
+                <span className="text-gray-500 text-sm">({course.reviews} reviews)</span>
               </div>
               <button
                 onClick={() => handleViewCourse(course)}
-                className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+                className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
               >
                 View Course
               </button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Container, Grid, Button, Box, useMediaQuery } from '@mui/material';
+import { Typography, Container, Grid, Button, Box, useMediaQuery, Card, CardContent, CardMedia } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { motion } from 'framer-motion';
 import Slider from 'react-slick';
@@ -7,14 +7,17 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { AttachMoney, TrendingUp, Savings } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
-import InvestmentGif from '../assets/landinggif.gif';
+import InvestmentGif from '../assets/heroimg3.png';
+import caseStudyImg1 from '../assets/heroimg3.png'; // Add relevant images
+import caseStudyImg2 from '../assets/heroimg3.png';
+import caseStudyImg3 from '../assets/heroimg3.png';
 
 const useStyles = makeStyles(() => ({
     root: {
         flexGrow: 1,
     },
     hero: {
-        backgroundImage: 'linear-gradient(to right, #3f51b5, #2196f3)',
+        backgroundImage: 'linear-gradient(to bottom, rgb(31, 41, 55), gray)',
         height: '90vh',
         display: 'flex',
         justifyContent: 'center',
@@ -51,10 +54,33 @@ const useStyles = makeStyles(() => ({
     carousel: {
         padding: '50px 20px',
         textAlign: 'center',
-        overflowX: 'hidden', // Prevent horizontal scroll
+        overflowX: 'hidden',
+        backgroundColor: '#f9fafb',
         '@media (max-width: 600px)': {
             padding: '30px 10px',
         },
+    },
+    card: {
+        maxWidth: 400,
+        margin: '0 auto',
+        borderRadius: '15px',
+        boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+        '@media (max-width: 600px)': {
+            maxWidth: '100%',
+        },
+    },
+    cardImage: {
+        height: 200,
+        borderRadius: '15px 15px 0 0',
+    },
+    cardContent: {
+        padding: '20px',
+        textAlign: 'left',
+    },
+    cardDetails: {
+        marginTop: '10px',
+        fontSize: '14px',
+        color: '#757575',
     },
     footer: {
         backgroundColor: '#3f51b5',
@@ -110,12 +136,41 @@ const Home = () => {
         },
     ];
 
+    const carouselData = [
+        {
+            title: 'Case Study 1',
+            description: 'How John paid off debt and started investing.',
+            image: caseStudyImg1,
+            name: 'John Doe',
+            age: '32',
+            location: 'New York, USA',
+        },
+        {
+            title: 'Case Study 2',
+            description: 'Maria’s journey to saving for her first home.',
+            image: caseStudyImg2,
+            name: 'Maria Johnson',
+            age: '28',
+            location: 'San Francisco, USA',
+        },
+        {
+            title: 'Case Study 3',
+            description: 'Building a family budget that works.',
+            image: caseStudyImg3,
+            name: 'Smith Family',
+            age: 'N/A',
+            location: 'Austin, USA',
+        },
+    ];
+
     const carouselSettings = {
         dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
     };
 
     return (
@@ -124,7 +179,6 @@ const Home = () => {
             <Box className={classes.hero}>
                 <Container>
                     <Grid container spacing={4} alignItems="center">
-                        {/* Left side: Motion text content */}
                         <Grid item xs={12} md={6}>
                             <motion.div
                                 initial={{ opacity: 0, y: -50 }}
@@ -147,8 +201,6 @@ const Home = () => {
                                 </Button>
                             </motion.div>
                         </Grid>
-
-                        {/* Right side: Finance-themed GIF and icons */}
                         <Grid item xs={12} md={6}>
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8 }}
@@ -213,42 +265,50 @@ const Home = () => {
                 </Container>
             </Box>
 
-            {/* Carousel Section */}
+            {/* Case Studies Carousel */}
             <Box className={classes.carousel}>
-                <Typography variant={isMobile ? 'h5' : 'h4'} sx={{ mb: 4 }}>
-                    Real-World Examples
+                <Typography variant={isMobile ? 'h5' : 'h4'} align="center" sx={{ mb: 4 }}>
+                    Financial Literacy Success Stories
                 </Typography>
                 <Slider {...carouselSettings}>
-                    <div>
-                        <Typography variant="h6">Case Study 1</Typography>
-                        <Typography variant="body2">
-                            Learn how John managed to pay off debt and start investing.
-                        </Typography>
-                    </div>
-                    <div>
-                        <Typography variant="h6">Case Study 2</Typography>
-                        <Typography variant="body2">
-                            Discover how Maria saved for her first home.
-                        </Typography>
-                    </div>
-                    <div>
-                        <Typography variant="h6">Case Study 3</Typography>
-                        <Typography variant="body2">
-                            Learn how to build a budget that works for your family.
-                        </Typography>
-                    </div>
+                    {carouselData.map((caseStudy, index) => (
+                        <Card className={classes.card} key={index}>
+                            <CardMedia
+                                component="img"
+                                image={caseStudy.image}
+                                alt={caseStudy.title}
+                                className={classes.cardImage}
+                            />
+                            <CardContent className={classes.cardContent}>
+                                <Typography variant="h6">{caseStudy.title}</Typography>
+                                <Typography variant="body2" sx={{ mt: 1 }}>
+                                    {caseStudy.description}
+                                </Typography>
+                                <Typography className={classes.cardDetails}>
+                                    <strong>Name:</strong> {caseStudy.name}
+                                </Typography>
+                                <Typography className={classes.cardDetails}>
+                                    <strong>Age:</strong> {caseStudy.age}
+                                </Typography>
+                                <Typography className={classes.cardDetails}>
+                                    <strong>Location:</strong> {caseStudy.location}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    ))}
                 </Slider>
             </Box>
 
             {/* Footer */}
             <Box className={classes.footer}>
-                <Typography variant="body2">© 2024 Financial Literacy Platform. All rights reserved.</Typography>
+                <Typography variant="body2">© 2024 Financial Literacy Hub. All rights reserved.</Typography>
             </Box>
         </div>
     );
 };
 
 export default Home;
+
 
 
 
@@ -274,15 +334,14 @@ export default Home;
 // import 'slick-carousel/slick/slick-theme.css';
 // import { AttachMoney, TrendingUp, Savings } from '@mui/icons-material';
 // import { useTheme } from '@mui/material/styles';
-// import InvestmentGif from '../assets/Investment.gif';
-
+// import InvestmentGif from '../assets/heroimg3.png';
 
 // const useStyles = makeStyles(() => ({
 //     root: {
 //         flexGrow: 1,
 //     },
 //     hero: {
-//         backgroundImage: 'linear-gradient(to right, #3f51b5, #2196f3)',
+//         backgroundImage: 'linear-gradient(to bottom, rgb(31, 41, 55), gray)',
 //         height: '90vh',
 //         display: 'flex',
 //         justifyContent: 'center',
@@ -410,13 +469,13 @@ export default Home;
 //                                     saving, investing, and retirement planning, so you can make informed decisions
 //                                     for a secure financial future.
 //                                 </Typography>
-//                                 <Button variant="contained" color="secondary" size="large" sx={{ mt: 4 }}>
+//                                 <Button variant="contained" color="success" size="large" sx={{ mt: 4 }}>
 //                                     Get Started
 //                                 </Button>
 //                             </motion.div>
 //                         </Grid>
 
-//                         {/* Right side: Finance-themed image and icons */}
+//                         {/* Right side: Finance-themed GIF and icons */}
 //                         <Grid item xs={12} md={6}>
 //                             <motion.div
 //                                 initial={{ opacity: 0, scale: 0.8 }}
@@ -517,3 +576,17 @@ export default Home;
 // };
 
 // export default Home;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
