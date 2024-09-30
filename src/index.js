@@ -1,17 +1,19 @@
 // index.js
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client'; // Change this import
 import App from './App';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './pages/Theme'; // Custom theme
+import './index.css'; // Import your Tailwind CSS file
 
-ReactDOM.render(
+
+const root = ReactDOM.createRoot(document.getElementById('root')); // Create root
+
+root.render(
   <ThemeProvider theme={theme}>
     <App />
-  </ThemeProvider>,
-  document.getElementById('root')
+  </ThemeProvider>
 );
-
 
 
 
