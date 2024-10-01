@@ -21,6 +21,7 @@ import Courses from './pages/Courses';
 import Gq from './pages/Gq';
 import ViewCourse from './pages/ViewCourse';
 import Portfolio from './pages/Portfolio';
+import CertificateGenerator from './pages/CertificateGenerator';
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
         <Route path="/gq" element={<Gq />} />
         <Route path="/view-course" element={<ViewCourse />} />
         <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/certificate" element={<CertificateGenerator />} />
       </Routes>
       <Footer/>
     </Router>

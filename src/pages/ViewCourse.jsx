@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ViewCourse = () => {
   const location = useLocation();
+  const navigate = useNavigate(); // Initialize useNavigate
   const { title, author, rating, reviews, category, videoLink, quizLink, summary } = location.state || {};
 
   const [checkpoints, setCheckpoints] = useState([
@@ -13,7 +14,7 @@ const ViewCourse = () => {
     { id: 5, text: 'Conclusion', completed: false },
   ]);
 
-  const [quizCompleted, setQuizCompleted] = useState(false); // Track if the quiz is completed
+  const [quizCompleted, setQuizCompleted] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
   const allCompleted = checkpoints.every(checkpoint => checkpoint.completed);
 
@@ -59,6 +60,11 @@ const ViewCourse = () => {
   const handleCloseQuiz = () => {
     setShowQuiz(false);
     setQuizCompleted(true); // Mark the quiz as completed when the modal is closed
+  };
+
+  const handleDownloadCertificate = () => {
+    // Navigate to CertificateGenerator with course title
+    navigate('/certificate', { state: { title } });
   };
 
   return (
@@ -140,14 +146,13 @@ const ViewCourse = () => {
 
         {/* Download Certificate Button */}
         <div className="mt-6 flex justify-center">
-          <a
-            href="/path-to-your-certificate.pdf" // Update this with the actual path to your certificate
+          <button
+            onClick={handleDownloadCertificate} // Navigate to CertificateGenerator with title
             className={`bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300 ${quizCompleted ? 'opacity-100' : 'opacity-50 cursor-not-allowed'}`}
-            download
-            onClick={(e) => !quizCompleted && e.preventDefault()} // Prevent the action if the quiz hasn't been completed
+            disabled={!quizCompleted} // Disable if quiz hasn't been completed
           >
             Download Certificate
-          </a>
+          </button>
         </div>
       </div>
 
@@ -179,6 +184,8 @@ export default ViewCourse;
 
 
 
+
+
 // import React, { useState, useEffect } from 'react';
 // import { useLocation } from 'react-router-dom';
 
@@ -193,6 +200,10 @@ export default ViewCourse;
 //     { id: 4, text: 'Chapter 3: Advanced', completed: false },
 //     { id: 5, text: 'Conclusion', completed: false },
 //   ]);
+
+//   const [quizCompleted, setQuizCompleted] = useState(false); // Track if the quiz is completed
+//   const [showQuiz, setShowQuiz] = useState(false);
+//   const allCompleted = checkpoints.every(checkpoint => checkpoint.completed);
 
 //   // Automatically tick a checkpoint every 2 minutes
 //   useEffect(() => {
@@ -233,8 +244,10 @@ export default ViewCourse;
 //     return link;
 //   };
 
-//   const [showQuiz, setShowQuiz] = useState(false);
-//   const allCompleted = checkpoints.every(checkpoint => checkpoint.completed);
+//   const handleCloseQuiz = () => {
+//     setShowQuiz(false);
+//     setQuizCompleted(true); // Mark the quiz as completed when the modal is closed
+//   };
 
 //   return (
 //     <div className="flex flex-col md:flex-row p-6 space-y-6 md:space-y-0 md:space-x-6 bg-white">
@@ -305,12 +318,24 @@ export default ViewCourse;
 //         {/* Take Quiz Button */}
 //         <div className="mt-6 flex justify-center">
 //           <button
-//             onClick={() => setShowQuiz((prev) => !prev)}
+//             onClick={() => setShowQuiz(true)}
 //             className={`inline-block ${allCompleted ? 'bg-purple-600' : 'bg-gray-400 cursor-not-allowed'} text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-700 transition duration-300`}
 //             disabled={!allCompleted} // Disable if not all checkpoints are completed
 //           >
-//             {showQuiz ? 'Hide Quiz' : 'Take Quiz'}
+//             Take Quiz
 //           </button>
+//         </div>
+
+//         {/* Download Certificate Button */}
+//         <div className="mt-6 flex justify-center">
+//           <a
+//             href="/path-to-your-certificate.pdf" // Update this with the actual path to your certificate
+//             className={`bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300 ${quizCompleted ? 'opacity-100' : 'opacity-50 cursor-not-allowed'}`}
+//             download
+//             onClick={(e) => !quizCompleted && e.preventDefault()} // Prevent the action if the quiz hasn't been completed
+//           >
+//             Download Certificate
+//           </a>
 //         </div>
 //       </div>
 
@@ -318,7 +343,7 @@ export default ViewCourse;
 //         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
 //           <div className="relative w-full max-w-4xl p-6 bg-white rounded-lg shadow-lg">
 //             <button
-//               onClick={() => setShowQuiz(false)}
+//               onClick={handleCloseQuiz} // Close quiz and enable download certificate button
 //               className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 hover:bg-red-700"
 //               aria-label="Close"
 //             >

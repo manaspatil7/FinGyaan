@@ -243,7 +243,7 @@ const Home = ({ language }) => {
                                     variant="contained"
                                     color="primary"
                                     sx={{ mt: 4 }}
-                                    href="/signup"
+                                    href="/login"
                                 >
                                     {languageData[language].getStarted}
                                 </Button>
