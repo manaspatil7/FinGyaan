@@ -186,7 +186,7 @@ const coursesData = [
       rating: 4.8,
       reviews: 190,
       category: 'Fintech & Innovation',
-      thumbnail: 'https://i.ytimg.com/vi/pLsv2nx9ZNE/hqdefault.jpg',
+      thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5vjyn7lTCq_mVFZRuLD9wq4YCLfnPxrmSCw&s',
       videoLink: 'https://www.youtube.com/watch?v=dv2yx2LJWx0',
       quizLink: 'https://view.genially.com/66fab32b874ffba72e66f567',
       summary: [
@@ -202,7 +202,7 @@ const coursesData = [
       rating: 4.3,
       reviews: 110,
       category: 'Behavioral Finance',
-      thumbnail: 'https://imageio.forbes.com/specials-images/dam/imageserve/618fb57f7dd1bc4e2d26578f/0x0.jpg?format=jpg&width=1200',
+      thumbnail: 'https://www.investopedia.com/thmb/7c7gfCUUNYwxxwKC050dCxy95b8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1186875474-5bd82696d460477481060d73de210380.jpg',
       videoLink: 'https://www.youtube.com/watch?v=9FVjaP5wzrw',
       quizLink: 'https://view.genially.com/66fab32b874ffba72e66f567',
       summary: [
@@ -271,7 +271,7 @@ const Courses = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-4">
+    <div className="max-w-7xl mx-auto p-4 ">
       <h1 className="text-3xl font-bold text-center mb-8">Finance Courses</h1>
 
       {/* Search and Category Filter */}

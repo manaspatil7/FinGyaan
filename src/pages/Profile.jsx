@@ -6,6 +6,7 @@ import { TextField, Button, IconButton, Box, Avatar, Typography } from '@mui/mat
 import { FaUserCircle } from 'react-icons/fa';
 import { CloudUploadOutlined } from '@mui/icons-material';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'; // For image upload
+import { motion } from 'framer-motion'; // For animations
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -83,67 +84,85 @@ const Profile = () => {
   };
 
   // Component to render interests as rounded rectangles
-  // Component to render interests as rounded rectangles
-const renderInterests = () => {
+  const renderInterests = () => {
     if (!profileData.interests) return null;
-  
+
     // Check if interests is an array or a string
     const interestsArray = Array.isArray(profileData.interests)
       ? profileData.interests
       : profileData.interests.split(',').map((interest) => interest.trim());
-  
+
     return (
-      <div className="flex flex-wrap gap-2 mt-4">
+      <motion.div
+        className="flex flex-wrap gap-2 mt-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         {interestsArray.map((interest, index) => (
-          <div
+          <motion.div
             key={index}
-            className="bg-blue-200 text-blue-800 font-semibold py-1 px-3 rounded-full shadow-md"
+            className="py-1 px-3 rounded-full shadow-md"
             style={{
               backgroundColor: getRandomColor(),
+              color: '#fff',
+              fontWeight: 'bold',
             }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
             {interest}
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     );
   };
-  
+
   // Function to generate random colors for interests
   const getRandomColor = () => {
     const colors = [
-      '#FFDDC1',
-      '#FFABAB',
-      '#FFC3A0',
-      '#FF677D',
-      '#D4A5A5',
-      '#392F5A',
-      '#F7B7A3',
+      '#FF6384',
+      '#36A2EB',
+      '#FFCE56',
       '#FF9A9E',
-      '#DCE35B',
       '#45AAB8',
+      '#92FE9D',
+      '#FDCB6E',
+      '#74EBD5',
+      '#FF5F6D',
+      '#FFC371',
     ];
     return colors[Math.floor(Math.random() * colors.length)];
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-6 flex items-center justify-center">
-      <div className="py-3 px-3 max-w-xl mx-auto"> {/* Centering the card with mx-auto */}
-        <div className="relative px-8 py-10 w-full max-w-3xl bg-white shadow-lg sm:rounded-lg sm:px-12"> {/* Increased max-width */}
-          <div className="max-w-xl mx-5"> {/* Keeping this for internal container width */}
-            <div className="flex justify-center items-center mb-4 mx-24">
+    <motion.div
+      className="min-h-screen bg-gradient-to-r from-green-200 via-blue-300 to-purple-200 py-10 flex items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="py-6 px-6 max-w-xl mx-auto rounded-lg shadow-lg bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg">
+        <motion.div
+          className="relative px-8 py-10 w-full max-w-3xl shadow-2xl sm:rounded-lg sm:px-12 bg-gradient-to-br from-indigo-900 to-gray-600 text-white"
+          initial={{ scale: 0.9 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="max-w-xl mx-5">
+            <div className="flex justify-center items-center mb-4">
               {profileData.photoURL ? (
                 <Avatar
                   src={profileData.photoURL}
                   alt="Profile"
                   sx={{ width: 120, height: 120 }}
-                  className="shadow-md"
+                  className="shadow-lg border-4 border-white"
                 />
               ) : (
                 <FaUserCircle className="w-24 h-24 text-gray-500" />
               )}
             </div>
-            <Typography variant="h4" className="text-center font-semibold text-gray-800 mb-6">
+            <Typography variant="h4" className="text-center font-semibold mb-6 text-shadow-lg">
               Profile
             </Typography>
 
@@ -156,6 +175,7 @@ const renderInterests = () => {
                   value={profileData.name}
                   onChange={handleInputChange}
                   variant="outlined"
+                  sx={{ backgroundColor: 'white', borderRadius: '5px' }}
                 />
                 <TextField
                   fullWidth
@@ -165,6 +185,7 @@ const renderInterests = () => {
                   onChange={handleInputChange}
                   variant="outlined"
                   disabled
+                  sx={{ backgroundColor: 'white', borderRadius: '5px' }}
                 />
                 <TextField
                   fullWidth
@@ -173,6 +194,7 @@ const renderInterests = () => {
                   value={profileData.interests}
                   onChange={handleInputChange}
                   variant="outlined"
+                  sx={{ backgroundColor: 'white', borderRadius: '5px' }}
                 />
                 <TextField
                   fullWidth
@@ -181,6 +203,7 @@ const renderInterests = () => {
                   value={profileData.goals}
                   onChange={handleInputChange}
                   variant="outlined"
+                  sx={{ backgroundColor: 'white', borderRadius: '5px' }}
                 />
                 <TextField
                   fullWidth
@@ -190,6 +213,7 @@ const renderInterests = () => {
                   onChange={handleInputChange}
                   variant="outlined"
                   type="number"
+                  sx={{ backgroundColor: 'white', borderRadius: '5px' }}
                 />
                 <TextField
                   fullWidth
@@ -199,6 +223,7 @@ const renderInterests = () => {
                   onChange={handleInputChange}
                   variant="outlined"
                   type="number"
+                  sx={{ backgroundColor: 'white', borderRadius: '5px' }}
                 />
                 <TextField
                   fullWidth
@@ -207,9 +232,9 @@ const renderInterests = () => {
                   value={profileData.otherDetails}
                   onChange={handleInputChange}
                   variant="outlined"
+                  sx={{ backgroundColor: 'white', borderRadius: '5px' }}
                 />
 
-                {/* Profile Photo Upload */}
                 <Box className="flex items-center justify-center mt-4">
                   <input
                     accept="image/*"
@@ -220,7 +245,7 @@ const renderInterests = () => {
                   />
                   <label htmlFor="profile-photo-upload">
                     <IconButton color="primary" aria-label="upload picture" component="span">
-                      <CloudUploadOutlined />
+                      <CloudUploadOutlined className="text-white" />
                     </IconButton>
                     <span>Upload Profile Photo</span>
                   </label>
@@ -230,6 +255,7 @@ const renderInterests = () => {
                   fullWidth
                   variant="contained"
                   color="primary"
+                  sx={{ backgroundColor: '#00796b', borderRadius: '10px' }}
                   onClick={() => {
                     handleSubmit();
                     handleProfilePhotoUpload();
@@ -239,57 +265,86 @@ const renderInterests = () => {
                 </Button>
               </form>
             ) : (
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold">Name:</span>
-                  <span>{profileData.name || 'N/A'}</span>
+              <motion.div className="space-y-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+                <div>
+                  <Typography variant="h6" className="text-shadow-sm">
+                    Name:
+                  </Typography>
+                  <Typography variant="body1" className="font-medium">
+                    {profileData.name || 'N/A'}
+                  </Typography>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold">Email:</span>
-                  <span>{profileData.email || 'N/A'}</span>
+                <div>
+                  <Typography variant="h6" className="text-shadow-sm">
+                    Email:
+                  </Typography>
+                  <Typography variant="body1" className="font-medium">
+                    {profileData.email}
+                  </Typography>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold">Interests: </span>
-                  <span>{renderInterests() || 'N/A'}</span>
+                <div>
+                  <Typography variant="h6" className="text-shadow-sm">
+                    Interests:
+                  </Typography>
+                  {renderInterests()}
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold">Goals:</span>
-                  <span>{profileData.goals || 'N/A'}</span>
+                <div>
+                  <Typography variant="h6" className="text-shadow-sm">
+                    Goals:
+                  </Typography>
+                  <Typography variant="body1" className="font-medium">
+                    {profileData.goals || 'N/A'}
+                  </Typography>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold">Investment Amount:</span>
-                  <span>{profileData.investmentAmount || 'N/A'}</span>
+                <div>
+                  <Typography variant="h6" className="text-shadow-sm">
+                    Investment Amount:
+                  </Typography>
+                  <Typography variant="body1" className="font-medium">
+                    {profileData.investmentAmount || 'N/A'}
+                  </Typography>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold">Income:</span>
-                  <span>{profileData.income || 'N/A'}</span>
+                <div>
+                  <Typography variant="h6" className="text-shadow-sm">
+                    Income:
+                  </Typography>
+                  <Typography variant="body1" className="font-medium">
+                    {profileData.income || 'N/A'}
+                  </Typography>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold">Other Details:</span>
-                  <span>{profileData.otherDetails || 'N/A'}</span>
+                <div>
+                  <Typography variant="h6" className="text-shadow-sm">
+                    Other Details:
+                  </Typography>
+                  <Typography variant="body1" className="font-medium">
+                    {profileData.otherDetails || 'N/A'}
+                  </Typography>
                 </div>
-                <Button fullWidth variant="contained" color="primary" onClick={() => setEditMode(true)}>
+
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  sx={{ backgroundColor: '#3f51b5', borderRadius: '10px' }}
+                  onClick={() => setEditMode(true)}
+                >
                   Edit Profile
                 </Button>
-                <Button
-                    fullWidth
-                    variant="outlined"
-                    color="error"
-                    onClick={handleLogout}
-                  >
-                    Log Out
-                  </Button>
-              </div>
+              </motion.div>
             )}
           </div>
-        </div>
+        </motion.div>
+        <Box mt={4}>
+          <Button fullWidth variant="contained" color="secondary" onClick={handleLogout}>
+            Logout
+          </Button>
+        </Box>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 export default Profile;
-
 
 
 

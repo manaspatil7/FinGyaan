@@ -16,6 +16,7 @@ const translations = {
     contact: "Contact Us",
     login: "Login / Sign In",
     profile: "Profile",
+    gamification:"Games",
   },
   Hindi: {
     home: "घर",
@@ -27,6 +28,7 @@ const translations = {
     contact: "संपर्क करें",
     login: "लॉगिन / साइन इन",
     profile: "प्रोफ़ाइल",
+    gamification: "खेल",
   }
 };
 
@@ -111,6 +113,9 @@ const Navbar = ({ onLanguageChange }) => {
             <Link to="/events" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-semibold">
               {t.events}
             </Link>
+            <Link to="/games" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-semibold">
+              {t.gamification}
+            </Link>
             <Link to="/contact" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-semibold">
               {t.contact}
             </Link>
@@ -192,6 +197,9 @@ const Navbar = ({ onLanguageChange }) => {
             </Link>
             <Link to="/events" onClick={handleLinkClick} className="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-semibold">
               {t.events}
+            </Link>
+            <Link to="/games" onClick={handleLinkClick} className="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-semibold">
+              {t.gamification}
             </Link>
             <Link to="/contact" onClick={handleLinkClick} className="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-semibold">
               {t.contact}

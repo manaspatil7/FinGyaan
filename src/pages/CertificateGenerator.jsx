@@ -40,23 +40,24 @@ const CertificateGenerator = () => {
 
   // Function to handle certificate generation and download
   const handleDownload = () => {
-    if (!userData || !title) return; // Prevent downloading if userData or title is not available
     const doc = new jsPDF();
 
     // Add background image
-    doc.addImage(img, 'PNG', 0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight());
+    doc.addImage(img, 'JPG', 0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight());
 
-    // Add course title and user's name
+    // Add donor's name
     doc.setFontSize(36);
     doc.setFont('Arial', 'normal');
-    doc.text(`Certificate of Completion`, 105, 100, { align: 'center' }); // Title of the certificate
-    doc.setFontSize(28);
-    doc.text(userData.name, 105, 140, { align: 'center' }); // User's name
+    doc.text(userData.name, 105, 160, { align: 'center' }); // Donor's name
+
+    // Add amount with rupee symbol and project name using Unicode for rupee symbol
     doc.setFontSize(20);
-    doc.text(`Completed the course: ${title}`, 105, 160, { align: 'center' }); // Course title
+    doc.setFont('Arial', 'normal');
+    doc.text(`For completing ${title} course`, 105, 180, { align: 'center' });
+    // doc.text(projectName, 105, 200, { align: 'center' }); // Project name
 
     // Save the PDF
-    doc.save(`${userData.name}-Certificate.pdf`);
+    doc.save(`${userData.name}-${title}-Certificate.pdf`);
   };
 
   if (loading) {

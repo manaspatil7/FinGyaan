@@ -51,13 +51,23 @@ const useStyles = makeStyles(() => ({
         borderRadius: '10px',
         boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
         textAlign: 'center',
-        transition: 'transform 0.3s',
+        transition: 'transform 0.3s, background-color 0.3s',
         '&:hover': {
             transform: 'translateY(-10px)',
+            backgroundColor: '#e0f7fa',
         },
         '@media (max-width: 600px)': {
             padding: '10px',
         },
+    },
+    featureIcon: {
+        fontSize: '40px',
+        marginBottom: '10px',
+        color: '#2196f3',
+    },
+    featureTitle: {
+        color: '#0d47a1',
+        fontWeight: 'bold',
     },
     carousel: {
         padding: '50px 20px',
@@ -73,6 +83,10 @@ const useStyles = makeStyles(() => ({
         margin: '0 auto',
         borderRadius: '15px',
         boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+        transition: 'transform 0.4s',
+        '&:hover': {
+            transform: 'scale(1.05)',
+        },
         '@media (max-width: 600px)': {
             maxWidth: '100%',
         },
@@ -251,71 +265,90 @@ const Home = ({ language }) => {
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.5 }}
-                                animate={{ opacity: 1, scale: 1 }}
+                                initial={{ opacity: 0, x: 50 }}
+                                animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 1 }}
                             >
-                                <img src={InvestmentGif} alt="Investment" width="100%" />
+                                <img src={InvestmentGif} alt="Investment" style={{ width: '100%' }} />
                             </motion.div>
                         </Grid>
                     </Grid>
                 </Container>
             </Box>
 
-            {/* Features Section */}
-            <Container className={classes.features}>
-                <Typography variant="h4" gutterBottom>
-                    {languageData[language].featuresTitle}
-                </Typography>
-                <Grid container spacing={4}>
-                    {languageData[language].featureData.map((feature, index) => (
-                        <Grid item xs={12} md={3} key={index}>
-                            <Box className={classes.featureBox}>
-                                <Typography variant="h6">{feature.title}</Typography>
-                                <Typography variant="body2">{feature.description}</Typography>
-                            </Box>
-                        </Grid>
-                    ))}
-                </Grid>
-            </Container>
+            {/* Key Areas of Financial Literacy */}
+            <Box className={classes.features}>
+                <Container>
+                    <Typography
+                        variant={isMobile ? 'h5' : 'h4'}
+                        align="center"
+                        gutterBottom
+                        className={classes.featureTitle}
+                    >
+                        {languageData[language].featuresTitle}
+                    </Typography>
+                    <Grid container spacing={3} justifyContent="center">
+                        {languageData[language].featureData.map((feature, index) => (
+                            <Grid item xs={12} sm={6} md={3} key={index}>
+                                <motion.div
+                                    whileHover={{ scale: 1.1 }}
+                                    transition={{ type: 'spring', stiffness: 300 }}
+                                >
+                                    <Box className={classes.featureBox}>
+                                        <Typography variant="h6" className={classes.featureTitle}>
+                                            {feature.title}
+                                        </Typography>
+                                        <Typography variant="body2" className={classes.cardDetails}>
+                                            {feature.description}
+                                        </Typography>
+                                    </Box>
+                                </motion.div>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Container>
+            </Box>
 
-            {/* Carousel Section */}
-            <Container className={classes.carousel}>
-                <Typography variant="h4" gutterBottom>
-                    {languageData[language].carouselTitle}
-                </Typography>
-                <Slider {...carouselSettings}>
-                    {languageData[language].carouselData.map((item, index) => (
-                        <Card className={classes.card} key={index}>
-                            <CardMedia
-                                component="img"
-                                alt={item.title}
-                                height="200"
-                                image={item.image}
-                                className={classes.cardImage}
-                            />
-                            <CardContent className={classes.cardContent}>
-                                <Typography variant="h5">{item.title}</Typography>
-                                <Typography variant="body2" className={classes.cardDetails}>
-                                    {item.description}
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </Slider>
-            </Container>
-
-            {/* Footer Section */}
-            <Box className={classes.footer}>
-                <Typography variant="body1">
-                    &copy; {new Date().getFullYear()} Your Company. All Rights Reserved.
-                </Typography>
+            {/* Success Stories */}
+            <Box className={classes.carousel}>
+                <Container>
+                    <Typography variant={isMobile ? 'h5' : 'h4'} align="center" gutterBottom>
+                        {languageData[language].carouselTitle}
+                    </Typography>
+                    <Slider {...carouselSettings}>
+                        {languageData[language].carouselData.map((story, index) => (
+                            <div key={index}>
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.8 }}
+                                >
+                                    <Card className={classes.card}>
+                                        <CardMedia
+                                            component="img"
+                                            height="200"
+                                            image={story.image}
+                                            className={classes.cardImage}
+                                        />
+                                        <CardContent className={classes.cardContent}>
+                                            <Typography variant="h6">{story.title}</Typography>
+                                            <Typography variant="body2">
+                                                {story.description}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </motion.div>
+                            </div>
+                        ))}
+                    </Slider>
+                </Container>
             </Box>
         </div>
     );
 };
 
 export default Home;
+
 
 
 

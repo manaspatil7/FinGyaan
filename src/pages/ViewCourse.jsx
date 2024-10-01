@@ -68,7 +68,7 @@ const ViewCourse = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row p-6 space-y-6 md:space-y-0 md:space-x-6 bg-white">
+    <div className="flex flex-col md:flex-row p-6 space-y-6 md:space-y-0 md:space-x-6 ">
       <div className="w-full md:w-2/3">
         <div className="aspect-w-16 aspect-h-9">
           {videoLink ? (
