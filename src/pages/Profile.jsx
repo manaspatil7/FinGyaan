@@ -142,14 +142,14 @@ const Profile = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="py-6 px-6 max-w-xl mx-auto rounded-lg shadow-lg bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg">
+      <div className="py-6 px-6 max-w-xl rounded-lg shadow-lg bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg">
         <motion.div
           className="relative px-8 py-10 w-full max-w-3xl shadow-2xl sm:rounded-lg sm:px-12 bg-gradient-to-br from-indigo-900 to-gray-600 text-white"
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="max-w-xl mx-5">
+          <div className="max-w-3xl mx-5">
             <div className="flex justify-center items-center mb-4">
               {profileData.photoURL ? (
                 <Avatar

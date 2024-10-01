@@ -16,7 +16,7 @@ const translations = {
     contact: "Contact Us",
     login: "Login / Sign In",
     profile: "Profile",
-    gamification:"Games",
+    gamification: "Games",
   },
   Hindi: {
     home: "घर",
@@ -38,12 +38,11 @@ const Navbar = ({ onLanguageChange }) => {
   const [selectedLanguage, setSelectedLanguage] = useState('English'); // Language state
   const navigate = useNavigate(); // For navigation
 
-
-    const handleLanguageChange = (event) => {
-        const newLanguage = event.target.value;
-        setSelectedLanguage(newLanguage);
-        onLanguageChange(newLanguage === 'English' ? 'en' : 'hi'); // Passing language code
-    };
+  const handleLanguageChange = (event) => {
+    const newLanguage = event.target.value;
+    setSelectedLanguage(newLanguage);
+    onLanguageChange(newLanguage === 'English' ? 'en' : 'hi'); // Passing language code
+  };
 
   // Toggle mobile menu
   const toggleMenu = () => {
@@ -69,8 +68,6 @@ const Navbar = ({ onLanguageChange }) => {
   const handleLinkClick = () => {
     setIsOpen(false); // Close the menu
   };
-
-  
 
   // Check if the user signed in through Google
   const isGoogleSignIn = user?.providerData.some((provider) => provider.providerId === 'google.com');
@@ -122,12 +119,12 @@ const Navbar = ({ onLanguageChange }) => {
 
             {/* Language Dropdown */}
             <select
-                value={selectedLanguage}
-                onChange={handleLanguageChange}
-                className="text-gray-300 bg-gray-800 border border-gray-600 rounded-md px-2 py-1"
+              value={selectedLanguage}
+              onChange={handleLanguageChange}
+              className="text-gray-300 bg-gray-800 border border-gray-600 rounded-md px-2 py-1"
             >
-                <option value="English">English</option>
-                <option value="Hindi">Hindi</option>
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
             </select>
           </div>
 
@@ -214,18 +211,27 @@ const Navbar = ({ onLanguageChange }) => {
               <option value="English">English</option>
               <option value="Hindi">Hindi</option>
             </select>
-          </div>
 
-          {/* Mobile Profile Icon */}
-          {user && (
-            <Link to="/profile" className="flex items-center space-x-2" onClick={handleLinkClick}>
-              <img
-                src={profilePhoto}
-                alt="Profile"
-                className="w-10 h-10 rounded-full cursor-pointer mx-2"
-              />
-            </Link>
-          )}
+            {/* Mobile Profile Icon or Login Button */}
+            {user ? (
+              <div className="flex items-center mt-4">
+                <img
+                  src={profilePhoto}
+                  alt="Profile"
+                  className="w-10 h-10 rounded-full cursor-pointer"
+                  onClick={handleProfileClick}
+                />
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                onClick={handleLinkClick}
+                className="block w-full text-center text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-base font-semibold mt-4"
+              >
+                {t.login}
+              </Link>
+            )}
+          </div>
         </div>
       )}
     </nav>
