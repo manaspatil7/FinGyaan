@@ -6,7 +6,7 @@ const coursesData = [
     {
       id: 1,
       title: 'Investment & Portfolio Management',
-      author: 'John Doe',
+      author: 'Jatin Gorana',
       rating: 5,
       reviews: 120,
       category: 'Investment & Portfolio Management',
@@ -22,7 +22,7 @@ const coursesData = [
     {
       id: 2,
       title: 'Personal Finance for Beginners',
-      author: 'Jane Smith',
+      author: 'Shravan More',
       rating: 4.7,
       reviews: 210,
       category: 'Personal Finance',
@@ -38,7 +38,7 @@ const coursesData = [
     {
       id: 3,
       title: 'Corporate Finance Essentials',
-      author: 'Michael Lee',
+      author: 'Maithil Shah',
       rating: 4.3,
       reviews: 98,
       category: 'Corporate Finance',
