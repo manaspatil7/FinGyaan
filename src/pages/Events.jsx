@@ -50,7 +50,7 @@ const eventsData = [
     date: '2024-07-18',
     time: '9:00 AM - 5:00 PM',
     location: 'Hyderabad International Convention Centre, Hyderabad',
-    image: 'https://i0.wp.com/scienceagri.com/wp-content/uploads/2021/11/Biggest-Investment-Companies.jpg?ssl=1',
+    image: 'https://i.ytimg.com/vi/jS4t4-wq0rs/maxresdefault.jpg',
   },
   {
     id: 6,
